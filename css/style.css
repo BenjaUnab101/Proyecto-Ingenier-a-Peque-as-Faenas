@@ -1,3 +1,44 @@
+
+/* CONFIGURACIÓN GENERAL DE LA INTERFAZ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f6f8;
+    color: #212529;
+}
+
+/* NAVEGACIÓN */
+
+.navbar-custom {
+    background-color: #18232f;
+    padding: 15px 0;
+}
+
+.navbar-custom .navbar-brand {
+    color: #ffffff;
+    font-size: 1.25rem;
+}
+
+.navbar-custom .nav-link {
+    color: #dce2e8;
+    margin-left: 15px;
+    transition: color 0.2s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #ffc107;
+}
 /* CONFIGURACIÓN GENERAL */
 
 body {
@@ -14,6 +55,140 @@ html {
 /* HERO */
 
 .hero-section {
+    background: linear-gradient(
+        135deg,
+        #18232f,
+        #293b4d
+    );
+
+    color: #ffffff;
+    padding: 100px 0;
+}
+
+.section-badge {
+    display: inline-block;
+
+    color: #ffc107;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    margin-bottom: 15px;
+}
+
+.dark-badge {
+    color: #59636d;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    color: #d9e0e6;
+    font-size: 1.1rem;
+    line-height: 1.7;
+
+    max-width: 650px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+/* Panel hero */
+
+.hero-panel {
+    background-color: #ffffff;
+    color: #212529;
+
+    border-radius: 18px;
+    padding: 40px 30px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero-panel-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.hero-panel h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.hero-panel p {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: #f1f3f5;
+    border-radius: 50px;
+
+    padding: 8px 14px;
+
+    font-size: 0.85rem;
+    color: #495057;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    background-color: #ffc107;
+    border-radius: 50%;
+}
+
+/* SECCIÓN DE MÓDULOS */
+
+.modules-section {
+    background-color: #f5f6f8;
+    padding: 85px 0;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading h2,
+.information-section h2 {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: #6c757d;
+}
+
+/* Tarjetas */
+
+.module-card {
+    height: 100%;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 14px;
+
+    padding: 30px;
+
     padding: 90px 0;
     background: linear-gradient(
         135deg,
@@ -76,6 +251,120 @@ html {
                 box-shadow 0.2s ease;
 }
 
+.module-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+}
+
+.module-icon {
+    font-size: 2.6rem;
+    margin-bottom: 15px;
+}
+
+.module-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.module-card p {
+    color: #6c757d;
+    line-height: 1.6;
+    min-height: 80px;
+}
+
+.module-card .btn {
+    margin-top: 15px;
+}
+
+/* INFORMACIÓN */
+
+.information-section {
+    background-color: #ffffff;
+    padding: 80px 0;
+}
+
+.information-section p {
+    color: #6c757d;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* SECCIONES FUTURAS */
+
+.placeholder-section {
+    padding: 70px 0;
+    background-color: #eef1f4;
+
+    border-top: 1px solid #dee2e6;
+}
+
+.placeholder-section h2 {
+    font-weight: 700;
+}
+
+.placeholder-section p {
+    color: #6c757d;
+}
+
+.module-status {
+    display: inline-block;
+
+    background-color: #dee2e6;
+    color: #495057;
+
+    padding: 7px 14px;
+    border-radius: 50px;
+
+    font-size: 0.85rem;
+}
+
+/* FOOTER */
+
+.footer-custom {
+    background-color: #18232f;
+    color: #dce2e8;
+
+    padding: 30px 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+
+    .navbar-custom .nav-link {
+        margin-left: 0;
+        padding: 10px 0;
+    }
+
+    .hero-section {
+        padding: 70px 0;
+    }
+
+    .hero-panel {
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .module-card {
+        padding: 25px;
+    }
 .system-card:hover {
     transform: translateY(-5px);
 
