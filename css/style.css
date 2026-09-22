@@ -1,452 +1,368 @@
-
-/* CONFIGURACIÓN GENERAL DE LA INTERFAZ */
-
+/* CONFIGURACIÓN GENERAL */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-}
-
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f6f8;
+    font-family: "Inter", sans-serif;
+    background-color: #f4f6f9;
     color: #212529;
+    line-height: 1.6;
 }
 
-/* NAVEGACIÓN */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Baloo 2", cursive;
+    font-weight: 600;
+}
 
-.navbar-custom {
-    background-color: #18232f;
+a {
+    text-decoration: none;
+}
+
+section {
+    padding: 60px 0;
+}
+
+
+/* BARRA DE NAVEGACIÓN */
+.navbar {
+    background-color: #0b1f3a !important;
     padding: 15px 0;
 }
 
-.navbar-custom .navbar-brand {
-    color: #ffffff;
-    font-size: 1.25rem;
+.navbar-brand {
+    color: #ffffff !important;
+    font-family: "Baloo 2", cursive;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.navbar-custom .nav-link {
-    color: #dce2e8;
-    margin-left: 15px;
-    transition: color 0.2s ease;
+.navbar-brand img {
+    max-height: 45px;
+    width: auto;
 }
 
-.navbar-custom .nav-link:hover,
-.navbar-custom .nav-link.active {
-    color: #ffc107;
-}
-/* CONFIGURACIÓN GENERAL */
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
-    color: #212529;
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    margin: 0 8px;
+    transition: color 0.3s ease;
 }
 
-html {
-    scroll-behavior: smooth;
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.navbar-toggler {
+    border-color: #ffffff;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
 }
 
 
-/* HERO */
-
-.hero-section {
+/* SECCIÓN PRINCIPAL / HERO */
+.hero {
     background: linear-gradient(
         135deg,
-        #18232f,
-        #293b4d
+        #0b1f3a,
+        #1c416d
     );
 
     color: #ffffff;
     padding: 100px 0;
 }
 
-.section-badge {
-    display: inline-block;
-
-    color: #ffc107;
-
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-
-    margin-bottom: 15px;
-}
-
-.dark-badge {
-    color: #59636d;
-}
-
-.hero-title {
-    font-size: clamp(2rem, 4vw, 3.4rem);
-    font-weight: 700;
-    line-height: 1.15;
-
-    margin-bottom: 25px;
-}
-
-.hero-description {
-    color: #d9e0e6;
-    font-size: 1.1rem;
-    line-height: 1.7;
-
-    max-width: 650px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 30px;
-}
-
-/* Panel hero */
-
-.hero-panel {
-    background-color: #ffffff;
-    color: #212529;
-
-    border-radius: 18px;
-    padding: 40px 30px;
-
-    text-align: center;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.hero-panel-icon {
-    font-size: 4rem;
-    margin-bottom: 15px;
-}
-
-.hero-panel h2 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-}
-
-.hero-panel p {
-    color: #6c757d;
-    line-height: 1.6;
-}
-
-.hero-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    background-color: #f1f3f5;
-    border-radius: 50px;
-
-    padding: 8px 14px;
-
-    font-size: 0.85rem;
-    color: #495057;
-}
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-
-    background-color: #ffc107;
-    border-radius: 50%;
-}
-
-/* SECCIÓN DE MÓDULOS */
-
-.modules-section {
-    background-color: #f5f6f8;
-    padding: 85px 0;
-}
-
-.section-heading {
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-.section-heading h2,
-.information-section h2 {
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.section-heading p {
-    color: #6c757d;
-}
-
-/* Tarjetas */
-
-.module-card {
-    height: 100%;
-
-    background-color: #ffffff;
-
-    border: 1px solid #e1e5e9;
-    border-radius: 14px;
-
-    padding: 30px;
-
-    padding: 90px 0;
-    background: linear-gradient(
-        135deg,
-        #343a40,
-        #212529
-    );
-
-    color: white;
-}
-
-.hero-section h1 {
+.hero h1 {
+    font-size: 3rem;
     margin-bottom: 20px;
 }
 
-.hero-section .lead {
-    color: #dee2e6;
-    max-width: 700px;
+.hero p {
+    font-size: 1.1rem;
+    max-width: 650px;
+}
+
+.hero .btn {
+    margin-top: 20px;
 }
 
 
-/* Tarjeta del hero */
+/* BOTONES */
+.btn-primary {
+    background-color: #0b1f3a;
+    border-color: #0b1f3a;
+}
 
-.hero-card {
-    background-color: #ffffff;
+.btn-primary:hover {
+    background-color: #1c416d;
+    border-color: #1c416d;
+}
+
+.btn-warning {
     color: #212529;
-
-    padding: 35px;
-
-    border-radius: 15px;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
-
-    text-align: center;
-}
-
-.hero-card h2 {
-    font-size: 1.5rem;
-    margin-top: 15px;
-}
-
-.hero-icon {
-    font-size: 4rem;
+    font-weight: 600;
 }
 
 
-/* TARJETAS DEL SISTEMA */
-
-.system-card {
-    height: 100%;
-
-    background-color: white;
-
-    padding: 30px;
-
+/* TARJETAS DE MÓDULOS */
+.module-card {
+    background-color: #ffffff;
+    border: none;
     border-radius: 12px;
-
-    border: 1px solid #dee2e6;
-
-    transition: transform 0.2s ease,
-                box-shadow 0.2s ease;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .module-card:hover {
     transform: translateY(-5px);
-
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
-}
-
-.module-icon {
-    font-size: 2.6rem;
-    margin-bottom: 15px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .module-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
+    color: #0b1f3a;
+    margin-bottom: 15px;
 }
 
 .module-card p {
     color: #6c757d;
-    line-height: 1.6;
-    min-height: 80px;
 }
 
-.module-card .btn {
-    margin-top: 15px;
+
+/* SECCIONES GENERALES */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* INFORMACIÓN */
-
-.information-section {
-    background-color: #ffffff;
-    padding: 80px 0;
+.section-title h2 {
+    color: #0b1f3a;
+    font-size: 2.3rem;
 }
 
-.information-section p {
-    color: #6c757d;
-    line-height: 1.8;
-    font-size: 1.05rem;
-}
-
-/* SECCIONES FUTURAS */
-
-.placeholder-section {
-    padding: 70px 0;
-    background-color: #eef1f4;
-
-    border-top: 1px solid #dee2e6;
-}
-
-.placeholder-section h2 {
-    font-weight: 700;
-}
-
-.placeholder-section p {
+.section-title p {
     color: #6c757d;
 }
 
-.module-status {
-    display: inline-block;
-
-    background-color: #dee2e6;
-    color: #495057;
-
-    padding: 7px 14px;
-    border-radius: 50px;
-
-    font-size: 0.85rem;
-}
-
-/* FOOTER */
-
-.footer-custom {
-    background-color: #18232f;
-    color: #dce2e8;
-
-    padding: 30px 0;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 991px) {
-
-    .navbar-custom .nav-link {
-        margin-left: 0;
-        padding: 10px 0;
-    }
-
-    .hero-section {
-        padding: 70px 0;
-    }
-
-    .hero-panel {
-        margin-top: 10px;
-    }
-
-}
-
-@media (max-width: 576px) {
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-    }
-
-    .hero-title {
-        font-size: 2.2rem;
-    }
-
-    .module-card {
-        padding: 25px;
-    }
-.system-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-}
-
-.system-card h3 {
-    margin-top: 15px;
-    font-size: 1.3rem;
-}
-
-.system-card p {
-    color: #6c757d;
-}
-
-.card-icon {
-    font-size: 2.5rem;
-}
-
-.disabled-card {
-    opacity: 0.70;
-}
-
-
-/* REGISTRO HU1 */
-
+/* FORMULARIO DE REGISTRO DE TRABAJADORES */
 .registration-section {
-    background-color: #e9ecef;
+    background-color: #f4f6f9;
+    min-height: 600px;
 }
 
 .registration-card {
-    background-color: white;
-
-    padding: 40px;
-
-    border-radius: 15px;
-
-    border: 1px solid #dee2e6;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .registration-card h2 {
-    margin-bottom: 5px;
+    color: #0b1f3a;
+    margin-bottom: 10px;
 }
 
+.registration-card p {
+    color: #6c757d;
+}
 
-/* Campos */
+/* CAMPOS DEL FORMULARIO */
+.form-label {
+    color: #0b1f3a;
+    font-weight: 600;
+}
 
-.form-control {
+.form-control,
+.form-select {
+    border: 1px solid #ced4da;
     border-radius: 8px;
-    padding: 10px 12px;
+    padding: 11px 14px;
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
-.form-control:focus {
-    border-color: #495057;
+.form-control:focus,
+.form-select:focus {
+    border-color: #1c416d;
+    box-shadow: 0 0 0 0.2rem rgba(28, 65, 109, 0.2);
+}
 
-    box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.15);
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* MENSAJES DEL FORMULARIO */
+#mensaje {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 
 
-/* FOOTER */
+/* TABLA DE TRABAJADORES */
 
+.table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.table-container h3 {
+    color: #0b1f3a;
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table thead {
+    background-color: #0b1f3a;
+    color: #ffffff;
+}
+
+.table thead th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.table td {
+    word-break: break-word;
+}
+
+
+/* INFORMACIÓN Y SEGURIDAD */
+
+.info-section {
+    background-color: #ffffff;
+}
+
+.info-section h2 {
+    color: #0b1f3a;
+}
+
+.info-section p {
+    color: #6c757d;
+}
+
+/* PIE DE PÁGINA */
 footer {
-    margin-top: 0;
+    background-color: #0b1f3a;
+    color: #ffffff;
+    padding: 30px 0;
+    text-align: center;
 }
 
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
 
-/* RESPONSIVE */
+footer a {
+    color: #ffc107;
+}
 
-@media (max-width: 768px) {
+footer a:hover {
+    color: #ffffff;
+}
 
-    .hero-section {
-        padding: 60px 0;
+/* RESPONSIVE: TABLETS */
+
+@media (max-width: 992px) {
+    .hero {
+        padding: 80px 0;
     }
 
-    .hero-card {
-        margin-top: 30px;
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
     .registration-card {
         padding: 25px;
     }
+}
 
+/* RESPONSIVE: CELULARES */
+@media (max-width: 768px) {
+    section {
+        padding: 40px 0;
+    }
+
+    .hero {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .registration-card {
+        padding: 20px;
+    }
+
+    .table-container {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .table {
+        min-width: 650px;
+    }
+}
+
+/* RESPONSIVE: CELULARES PEQUEÑOS */
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .registration-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 5px;
+    }
 }
