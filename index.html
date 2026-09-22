@@ -1,39 +1,27 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Control de Faena | Sistema Minero</title>
-
     <meta name="description"
         content="Sistema de trazabilidad y seguridad para pequeñas faenas mineras.">
-
     <!-- Bootstrap 5.3.3 -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
-
     <!-- Estilos propios -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-    <!-- =========================
-         NAVEGACIÓN
-    ========================== -->
-
+    <!--NAVEGACIÓN-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-
         <div class="container">
-
             <a class="navbar-brand fw-bold" href="index.html">
                 ⛏ Control de Faena
             </a>
-
             <button
                 class="navbar-toggler"
                 type="button"
@@ -42,390 +30,424 @@
                 aria-controls="menuPrincipal"
                 aria-expanded="false"
                 aria-label="Abrir navegación">
-
                 <span class="navbar-toggler-icon"></span>
-
             </button>
-
             <div class="collapse navbar-collapse" id="menuPrincipal">
-
                 <ul class="navbar-nav ms-auto">
-
                     <li class="nav-item">
                         <a class="nav-link active" href="#inicio">
                             Inicio
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#trabajadores">
                             Trabajadores
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#trazabilidad">
                             Trazabilidad
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#seguridad">
                             Seguridad
                         </a>
                     </li>
-
                 </ul>
-
             </div>
-
         </div>
-
     </nav>
 
-
-    <!-- =========================
-         HERO / INICIO
-    ========================== -->
-
+    <!-- HERO / INICIO-->
     <main>
-
         <section id="inicio" class="hero-section">
-
             <div class="container">
-
                 <div class="row align-items-center g-5">
-
                     <div class="col-lg-7">
-
                         <span class="section-badge">
                             SISTEMA DE SEGURIDAD MINERA
                         </span>
-
                         <h1 class="hero-title">
                             Trazabilidad y seguridad
                             en pequeñas faenas mineras
                         </h1>
-
                         <p class="hero-description">
                             Gestiona la información de los trabajadores,
                             controla sus movimientos y facilita el acceso
                             a datos relevantes para la seguridad de la faena.
                         </p>
-
                         <div class="hero-buttons">
-
                             <a href="#trabajadores"
                                 class="btn btn-warning btn-lg">
                                 Explorar sistema
                             </a>
-
                             <a href="#informacion"
                                 class="btn btn-outline-light btn-lg">
                                 Conocer el proyecto
                             </a>
-
                         </div>
-
                     </div>
 
-
                     <div class="col-lg-5">
-
                         <div class="hero-panel">
-
                             <div class="hero-panel-icon">
                                 ⛏
                             </div>
-
                             <h2>
                                 Control de faena
                             </h2>
-
                             <p>
                                 Una plataforma para apoyar la gestión
                                 de información y la respuesta ante
                                 situaciones de emergencia.
                             </p>
-
                             <div class="hero-status">
                                 <span class="status-dot"></span>
                                 Plataforma en desarrollo
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =========================
-             MÓDULOS DEL SISTEMA
-        ========================== -->
+        <!--MÓDULOS DEL SISTEMA-->
 
         <section id="trabajadores" class="modules-section">
-
             <div class="container">
-
                 <div class="section-heading">
-
                     <span class="section-badge dark-badge">
                         MÓDULOS DEL SISTEMA
                     </span>
-
                     <h2>
                         Gestión de la faena
                     </h2>
-
                     <p>
                         Accede a las áreas principales del sistema
                         de trazabilidad y seguridad.
                     </p>
-
                 </div>
-
 
                 <div class="row g-4">
 
 
                     <!-- Trabajadores -->
-
                     <div class="col-md-4">
-
                         <div class="module-card">
-
                             <div class="module-icon">
                                 👷
                             </div>
-
                             <h3>
                                 Trabajadores
                             </h3>
-
                             <p>
                                 Registra y administra la información
                                 básica de los trabajadores de la faena.
                             </p>
-
                             <a href="#registro-trabajador"
                                 class="btn btn-outline-dark">
                                 Gestión de trabajadores
                             </a>
-
                         </div>
-
                     </div>
 
-
                     <!-- Trazabilidad -->
-
                     <div class="col-md-4">
-
                         <div class="module-card">
-
                             <div class="module-icon">
                                 🕐
                             </div>
-
                             <h3>
                                 Trazabilidad
                             </h3>
-
                             <p>
                                 Consulta y gestiona los movimientos
                                 de ingreso y salida de los trabajadores.
                             </p>
-
                             <a href="#trazabilidad"
                                 class="btn btn-outline-dark">
                                 Ver módulo
                             </a>
-
                         </div>
-
                     </div>
 
-
                     <!-- Seguridad -->
-
                     <div class="col-md-4">
-
                         <div class="module-card">
-
                             <div class="module-icon">
                                 🛡️
                             </div>
-
                             <h3>
                                 Seguridad
                             </h3>
-
                             <p>
                                 Accede a funcionalidades relacionadas
                                 con incidentes y emergencias.
                             </p>
-
                             <a href="#seguridad"
                                 class="btn btn-outline-dark">
                                 Ver módulo
                             </a>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =========================
-             INFORMACIÓN DEL PROYECTO
-        ========================== -->
-
+        <!--INFORMACIÓN DEL PROYECTO-->
         <section id="informacion" class="information-section">
-
             <div class="container">
-
                 <div class="row justify-content-center">
-
                     <div class="col-lg-9 text-center">
-
                         <span class="section-badge dark-badge">
                             SOBRE EL PROYECTO
                         </span>
-
                         <h2>
                             Una solución orientada a la seguridad
                         </h2>
-
                         <p>
                             El proyecto busca apoyar el control de los
                             trabajadores dentro de pequeñas faenas mineras,
                             facilitando el registro y la consulta de
                             información relevante.
                         </p>
-
                     </div>
+                </div>
+            </div>
+        </section>
+
+ 
+<!--HU1 - REGISTRAR TRABAJADOR-->
+<section id="registro-trabajador" class="registration-section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Registrar trabajador</h2>
+            <p>
+                Ingresa la información del trabajador para
+                mantener actualizado el registro de la faena.
+            </p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="registration-card">
+
+                    <!-- Mensaje de resultado -->
+                    <div
+                        id="mensaje"
+                        class="alert d-none"
+                        role="alert">
+                    </div>
+
+                    <!-- Formulario -->
+                    <form id="formTrabajador" novalidate>
+
+                        <div class="row g-3">
+
+                            <!-- Nombre completo -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="nombre"
+                                    class="form-label">
+                                    Nombre completo *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nombre"
+                                    name="nombre"
+                                    placeholder="Ej: Juan Pérez"
+                                    required>
+
+                                <div class="invalid-feedback">
+                                    Ingrese el nombre completo.
+                                </div>
+
+                            </div>
+
+                            <!-- RUT -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="rut"
+                                    class="form-label">
+                                    RUT *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="rut"
+                                    name="rut"
+                                    placeholder="Ej: 12.345.678-9"
+                                    required>
+
+                                <div class="invalid-feedback">
+                                    Ingrese un RUT válido.
+                                </div>
+
+                            </div>
+
+                            <!-- Cargo -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="cargo"
+                                    class="form-label">
+                                    Cargo *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="cargo"
+                                    name="cargo"
+                                    placeholder="Ej: Minero"
+                                    required>
+
+                                <div class="invalid-feedback">
+                                    Ingrese el cargo.
+                                </div>
+
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="col-md-6">
+
+                                <label
+                                    for="telefono"
+                                    class="form-label">
+                                    Teléfono
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="telefono"
+                                    name="telefono"
+                                    placeholder="+56 9 1234 5678">
+
+                            </div>
+
+                            <!-- Antecedentes -->
+                            <div class="col-12">
+
+                                <label
+                                    for="antecedentes"
+                                    class="form-label">
+                                    Antecedentes
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="antecedentes"
+                                    name="antecedentes"
+                                    rows="3"
+                                    placeholder="Información adicional...">
+                                </textarea>
+
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="col-12 mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-dark">
+                                    Registrar trabajador
+                                </button>
+
+                                <button
+                                    type="reset"
+                                    class="btn btn-outline-secondary">
+                                    Limpiar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
+        <!--LISTADO DE TRABAJADORES-->
+        <div class="row justify-content-center mt-5">
 
-        <!-- =========================
-             SECCIONES FUTURAS
-        ========================== -->
+            <div class="col-lg-10">
 
-        <section id="registro-trabajador"
-            class="placeholder-section">
+                <div class="registration-card">
 
-            <div class="container text-center">
+                    <h3 class="mb-4">
+                        Trabajadores registrados
+                    </h3>
 
-                <h2>
-                    Gestión de trabajadores
-                </h2>
+                    <div class="table-responsive">
 
-                <p>
-                    Este módulo será desarrollado en la HU1.
-                </p>
+                        <table class="table table-hover align-middle">
 
-                <span class="module-status">
-                    Próximamente
-                </span>
+                            <thead class="table-dark">
 
-            </div>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>RUT</th>
+                                    <th>Cargo</th>
+                                    <th>Teléfono</th>
+                                </tr>
 
-        </section>
+                            </thead>
 
+                            <tbody id="tablaTrabajadores">
 
-        <section id="trazabilidad"
-            class="placeholder-section">
+                                <!-- Se completa mediante JavaScript -->
+                            </tbody>
 
-            <div class="container text-center">
+                        </table>
 
-                <h2>
-                    Trazabilidad
-                </h2>
+                    </div>
+                    <p
+                        id="sinTrabajadores"
+                        class="text-muted text-center">
+                        No hay trabajadores registrados.
+                    </p>
 
-                <p>
-                    Módulo destinado al registro y consulta
-                    de movimientos de los trabajadores.
-                </p>
-
-                <span class="module-status">
-                    Próximamente
-                </span>
+                </div>
 
             </div>
-
-        </section>
-
-
-        <section id="seguridad"
-            class="placeholder-section">
-
-            <div class="container text-center">
-
-                <h2>
-                    Seguridad y emergencias
-                </h2>
-
-                <p>
-                    Módulo destinado a funcionalidades de seguridad.
-                </p>
-
-                <span class="module-status">
-                    Próximamente
-                </span>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer-custom">
-
-        <div class="container text-center">
-
-            <p class="mb-1 fw-bold">
-                ⛏ Control de Faena Minera
-            </p>
-
-            <p class="mb-0">
-                Proyecto de Ingeniería de Software
-            </p>
 
         </div>
 
+    </div>
+
+</section>
+
+    <!--FOOTER-->
+    <footer class="footer-custom">
+        <div class="container text-center">
+            <p class="mb-1 fw-bold">
+                ⛏ Control de Faena Minera
+            </p>
+            <p class="mb-0">
+                Proyecto de Ingeniería de Software
+            </p>
+        </div>
     </footer>
 
 
-    <!-- Bootstrap JS -->
-
+    <!--Bootstrap JS-->
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     </script>
 
-    <!-- JavaScript propio -->
-
+    <!--JavaScript propio-->
     <script src="js/script.js"></script>
 
 </body>
-
 </html>
