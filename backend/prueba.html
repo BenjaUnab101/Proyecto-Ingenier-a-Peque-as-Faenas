@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba API</title>
+</head>
+<body>
+
+    <h1>Prueba de registro de trabajador</h1>
+
+    <button onclick="registrarTrabajador()">
+        Registrar trabajador de prueba
+    </button>
+
+    <p id="resultado"></p>
+
+    <script>
+        async function registrarTrabajador() {
+
+            const trabajador = {
+                nombre: "Juan Pérez",
+                rut: "12.345.678-9",
+                cargo: "Operador",
+                telefono: "912345678",
+                antecedentes: "Sin antecedentes registrados"
+            };
+
+            try {
+                const respuesta = await fetch("http://localhost:3000/trabajadores", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(trabajador)
+                });
+
+                const datos = await respuesta.json();
+
+                document.getElementById("resultado").textContent =
+                    datos.mensaje || datos.error;
+
+            } catch (error) {
+                document.getElementById("resultado").textContent =
+                    "Error al conectar con el servidor.";
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
