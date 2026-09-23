@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabla = document.getElementById("tablaTrabajadores");
     const sinTrabajadores = document.getElementById("sinTrabajadores");
 
-    const CLAVE = "trabajadoresFaena";
+    const API_URL = "/trabajadores";
 
 
     // Comprobar que los elementos existen
@@ -22,37 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    // Obtener trabajadores guardados
-
-    function obtenerTrabajadores() {
-
-        try {
-
-            return JSON.parse(localStorage.getItem(CLAVE)) || [];
-
-        } catch (error) {
-
-            console.error("Error al leer trabajadores:", error);
-
-            return [];
-
-        }
-
-    }
-
-
-    // Guardar trabajadores
-
-    function guardarTrabajadores(trabajadores) {
-
-        localStorage.setItem(
-            CLAVE,
-            JSON.stringify(trabajadores)
-        );
-
-    }
-
+    
 
     // Mostrar mensajes
 
@@ -66,46 +36,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Mostrar trabajadores en la tabla
 
-    function mostrarTrabajadores() {
+    async function mostrarTrabajadores() {
 
-        const trabajadores = obtenerTrabajadores();
+        try {
 
-        tabla.innerHTML = "";
+            const respuesta = await fetch(API_URL);
+
+            if (!respuesta.ok) {
+                throw new Error("No fue posible obtener los trabajadores.");
+            }
+
+            const trabajadores = await respuesta.json();
+
+            tabla.innerHTML = "";
 
 
-        if (trabajadores.length === 0) {
+            if (trabajadores.length === 0) {
 
-            sinTrabajadores.classList.remove("d-none");
+                sinTrabajadores.classList.remove("d-none");
 
-            return;
+                return;
+
+            }
+
+
+            sinTrabajadores.classList.add("d-none");
+
+
+            trabajadores.forEach(function (trabajador) {
+
+                const fila = document.createElement("tr");
+
+                fila.innerHTML = `
+                    <td>${trabajador.nombre}</td>
+                    <td>${trabajador.rut}</td>
+                    <td>${trabajador.cargo}</td>
+                    <td>${trabajador.telefono || "No registrado"}</td>
+                `;
+
+                tabla.appendChild(fila);
+
+            });
+
+        } catch (error) {
+
+            console.error("Error al cargar trabajadores:", error);
+
+            mostrarMensaje(
+                "No fue posible cargar los trabajadores.",
+                "danger"
+            );
 
         }
-
-
-        sinTrabajadores.classList.add("d-none");
-
-
-        trabajadores.forEach(function (trabajador) {
-
-            const fila = document.createElement("tr");
-
-            fila.innerHTML = `
-                <td>${trabajador.nombre}</td>
-                <td>${trabajador.rut}</td>
-                <td>${trabajador.cargo}</td>
-                <td>${trabajador.telefono || "No registrado"}</td>
-            `;
-
-            tabla.appendChild(fila);
-
-        });
 
     }
 
 
     // Enviar formulario
 
-    formulario.addEventListener("submit", function (evento) {
+    formulario.addEventListener("submit", async function (evento) {
 
         // Evitar que la página se recargue
 
@@ -141,37 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Obtener trabajadores actuales
-
-        const trabajadores = obtenerTrabajadores();
-
-
-        // Comprobar RUT duplicado
-
-        const rutExiste = trabajadores.some(function (trabajador) {
-
-            return trabajador.rut === rut;
-
-        });
-
-
-        if (rutExiste) {
-
-            mostrarMensaje(
-                "Ya existe un trabajador con ese RUT.",
-                "danger"
-            );
-
-            return;
-
-        }
-
-
-        // Crear nuevo trabajador
+        // Preparar datos para enviar al backend
 
         const trabajador = {
-
-            id: Date.now(),
 
             nombre: nombre,
 
@@ -181,36 +142,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
             telefono: telefono,
 
-            antecedentes: antecedentes,
-
-            fechaRegistro: new Date().toISOString()
+            antecedentes: antecedentes
 
         };
 
 
-        // Agregar y guardar
+        try {
 
-        trabajadores.push(trabajador);
+            // Enviar trabajador al backend
 
-        guardarTrabajadores(trabajadores);
+            const respuesta = await fetch(API_URL, {
 
+                method: "POST",
 
-        // Actualizar tabla
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        mostrarTrabajadores();
+                body: JSON.stringify(trabajador)
 
-
-        // Mostrar éxito
-
-        mostrarMensaje(
-            "Trabajador registrado correctamente.",
-            "success"
-        );
+            });
 
 
-        // Limpiar formulario
+            const resultado = await respuesta.json();
 
-        formulario.reset();
+
+            // Error por RUT duplicado
+
+            if (respuesta.status === 409) {
+
+                mostrarMensaje(
+                    resultado.error,
+                    "danger"
+                );
+
+                return;
+
+            }
+
+
+            // Otros errores de validación
+
+            if (!respuesta.ok) {
+
+                mostrarMensaje(
+                    resultado.error || "No fue posible registrar el trabajador.",
+                    "danger"
+                );
+
+                return;
+
+            }
+
+
+            // Registro exitoso
+
+            mostrarMensaje(
+                "Trabajador registrado correctamente.",
+                "success"
+            );
+
+
+            // Limpiar formulario
+
+            formulario.reset();
+
+
+            // Actualizar tabla desde la base de datos
+
+            mostrarTrabajadores();
+
+
+        } catch (error) {
+
+            console.error("Error al registrar trabajador:", error);
+
+            mostrarMensaje(
+                "No fue posible conectar con el servidor.",
+                "danger"
+            );
+
+        }
 
     });
 
