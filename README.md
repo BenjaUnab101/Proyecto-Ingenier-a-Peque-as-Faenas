@@ -22,4 +22,4 @@ Arquitectura:
 - SQLite: Almacenamiento local de los registros cuando no exista conectividad
 - Github: Control de versiones y respaldo del proyecto
 ## Organizacion del repositorio
-Las carpetas princiaples dentro de Git son el CSS, JS, BACKEND para algunas de las funcionales o diseño del trabajo
+Las carpetas princiaples dentro de Git son el CSS, JS, Backend para algunas de las funcionales o diseño del trabajo
