@@ -552,6 +552,128 @@
     </div>
 </section>
 
+<!-- HU3 - REGISTRAR SALIDA -->
+<section id="registro-salida" class="registration-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>Registrar salida</h2>
+
+            <p>
+                Registra la salida de un trabajador de la faena.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="registration-card">
+
+                    <!-- Mensaje -->
+                    <div
+                        id="mensajeSalida"
+                        class="alert d-none"
+                        role="alert">
+                    </div>
+
+                    <!-- Formulario -->
+                    <form id="formSalida">
+
+                        <div class="row g-3">
+
+                            <!-- Trabajador presente -->
+                            <div class="col-12">
+
+                                <label
+                                    for="trabajadorSalida"
+                                    class="form-label">
+
+                                    Trabajador *
+
+                                </label>
+
+                                <select
+                                    id="trabajadorSalida"
+                                    class="form-select"
+                                    required>
+
+                                    <option value="">
+                                        Seleccione un trabajador
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Fecha -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Fecha
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fechaSalida"
+                                    class="form-control"
+                                    readonly>
+
+                            </div>
+
+                            <!-- Hora -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Hora
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="horaSalida"
+                                    class="form-control"
+                                    readonly>
+
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="col-12 mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-dark">
+
+                                    Registrar salida
+
+                                </button>
+
+                                <button
+                                    type="reset"
+                                    class="btn btn-outline-secondary">
+
+                                    Limpiar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
     <!--FOOTER-->
     <footer class="footer-custom">
         <div class="container text-center">

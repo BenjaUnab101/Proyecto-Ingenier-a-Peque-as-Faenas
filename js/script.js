@@ -384,4 +384,225 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
+    // ============================
+    // HU3 - REGISTRAR SALIDA
+    // ============================
+
+    const formularioSalida =
+        document.getElementById("formSalida");
+
+    const mensajeSalida =
+        document.getElementById("mensajeSalida");
+
+    const trabajadorSalida =
+        document.getElementById("trabajadorSalida");
+
+    const fechaSalida =
+        document.getElementById("fechaSalida");
+
+    const horaSalida =
+        document.getElementById("horaSalida");
+
+
+    // Mostrar mensajes de HU3
+    function mostrarMensajeSalida(texto, tipo) {
+
+        mensajeSalida.className =
+            `alert alert-${tipo}`;
+
+        mensajeSalida.textContent =
+            texto;
+    }
+
+
+    // Cargar trabajadores actualmente presentes
+    async function cargarTrabajadoresPresentes() {
+
+        try {
+
+            const respuesta =
+                await fetch("/trabajadores/presentes");
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "No fue posible obtener los trabajadores presentes."
+                );
+
+            }
+
+            const trabajadores =
+                await respuesta.json();
+
+            trabajadorSalida.innerHTML = `
+                <option value="">
+                    Seleccione un trabajador
+                </option>
+            `;
+
+
+            trabajadores.forEach(function (trabajador) {
+
+                const opcion =
+                    document.createElement("option");
+
+                opcion.value =
+                    trabajador.id;
+
+                opcion.textContent =
+                    `${trabajador.nombre} - ${trabajador.rut}`;
+
+                trabajadorSalida.appendChild(
+                    opcion
+                );
+
+            });
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al cargar trabajadores presentes:",
+                error
+            );
+
+            mostrarMensajeSalida(
+                "No fue posible cargar los trabajadores presentes.",
+                "danger"
+            );
+
+        }
+
+    }
+
+
+    // Actualizar fecha y hora visual
+    function actualizarFechaHoraSalida() {
+
+        const ahora =
+            new Date();
+
+        fechaSalida.value =
+            ahora.toLocaleDateString("es-CL");
+
+        horaSalida.value =
+            ahora.toLocaleTimeString("es-CL", {
+
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+
+            });
+
+    }
+
+
+    // Inicializar HU3
+    if (formularioSalida) {
+
+        actualizarFechaHoraSalida();
+
+        cargarTrabajadoresPresentes();
+
+
+        formularioSalida.addEventListener(
+            "submit",
+            async function (evento) {
+
+                evento.preventDefault();
+
+
+                const trabajador_id =
+                    trabajadorSalida.value;
+
+
+                // CA1
+                if (!trabajador_id) {
+
+                    mostrarMensajeSalida(
+                        "Debe seleccionar un trabajador presente.",
+                        "danger"
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const respuesta =
+                        await fetch("/salidas", {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                trabajador_id:
+                                    trabajador_id
+                            })
+
+                        });
+
+
+                    const resultado =
+                        await respuesta.json();
+
+
+                    if (!respuesta.ok) {
+
+                        mostrarMensajeSalida(
+                            resultado.error ||
+                            "No fue posible registrar la salida.",
+                            "danger"
+                        );
+
+                        return;
+
+                    }
+
+
+                    // CA2
+                    mostrarMensajeSalida(
+                        "Salida registrada correctamente.",
+                        "success"
+                    );
+
+
+                    actualizarFechaHoraSalida();
+
+
+                    formularioSalida.reset();
+
+
+                    actualizarFechaHoraSalida();
+
+
+                    // Actualizar lista de trabajadores presentes
+                    cargarTrabajadoresPresentes();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error al registrar salida:",
+                        error
+                    );
+
+                    mostrarMensajeSalida(
+                        "No fue posible conectar con el servidor.",
+                        "danger"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
 });
