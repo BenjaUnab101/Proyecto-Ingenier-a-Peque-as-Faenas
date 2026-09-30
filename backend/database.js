@@ -44,4 +44,21 @@ db.run(`
     }
 });
 
+// Tabla de salidas
+db.run(`
+    CREATE TABLE IF NOT EXISTS salidas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        trabajador_id INTEGER NOT NULL,
+        fecha TEXT NOT NULL,
+        hora TEXT NOT NULL,
+        FOREIGN KEY (trabajador_id) REFERENCES trabajadores(id)
+    )
+`, (err) => {
+    if (err) {
+        console.error("Error al crear la tabla salidas:", err.message);
+    } else {
+        console.log("Tabla salidas lista.");
+    }
+});
+
 module.exports = db;

@@ -146,7 +146,139 @@ app.post("/ingresos", (req, res) => {
     );
 });
 
-// La linea 150 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
+// Obtener trabajadores actualmente presentes
+app.get("/trabajadores/presentes", (req, res) => {
+
+    const sql = `
+        SELECT
+            t.id,
+            t.nombre,
+            t.rut,
+            t.cargo
+        FROM trabajadores t
+        INNER JOIN ingresos i
+            ON t.id = i.trabajador_id
+        LEFT JOIN salidas s
+            ON t.id = s.trabajador_id
+            AND i.id = (
+                SELECT MAX(i2.id)
+                FROM ingresos i2
+                WHERE i2.trabajador_id = t.id
+            )
+        WHERE i.id = (
+            SELECT MAX(i3.id)
+            FROM ingresos i3
+            WHERE i3.trabajador_id = t.id
+        )
+        AND s.id IS NULL
+        ORDER BY t.nombre ASC
+    `;
+
+    db.all(sql, [], (err, rows) => {
+
+        if (err) {
+            console.error(err.message);
+
+            return res.status(500).json({
+                error: "No fue posible obtener los trabajadores presentes."
+            });
+        }
+
+        res.json(rows);
+    });
+});
+
+// Registrar salida
+app.post("/salidas", (req, res) => {
+
+    const { trabajador_id } = req.body;
+
+    if (!trabajador_id) {
+        return res.status(400).json({
+            error: "Debe seleccionar un trabajador."
+        });
+    }
+
+    const ahora = new Date();
+
+    const fecha = ahora.toLocaleDateString("es-CL");
+
+    const hora = ahora.toLocaleTimeString("es-CL", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    // Verificar que el trabajador esté actualmente presente
+    const sqlPresente = `
+        SELECT t.id
+        FROM trabajadores t
+        INNER JOIN ingresos i
+            ON t.id = i.trabajador_id
+        WHERE t.id = ?
+        AND i.id = (
+            SELECT MAX(i2.id)
+            FROM ingresos i2
+            WHERE i2.trabajador_id = t.id
+        )
+        AND NOT EXISTS (
+            SELECT 1
+            FROM salidas s
+            WHERE s.trabajador_id = t.id
+            AND s.id > i.id
+        )
+    `;
+
+    db.get(sqlPresente, [trabajador_id], (err, trabajador) => {
+
+        if (err) {
+            console.error(err.message);
+
+            return res.status(500).json({
+                error: "No fue posible verificar el trabajador."
+            });
+        }
+
+        if (!trabajador) {
+            return res.status(400).json({
+                error: "El trabajador no se encuentra actualmente dentro de la faena."
+            });
+        }
+
+        const sqlSalida = `
+            INSERT INTO salidas
+            (trabajador_id, fecha, hora)
+            VALUES (?, ?, ?)
+        `;
+
+        db.run(
+            sqlSalida,
+            [trabajador_id, fecha, hora],
+            function (err) {
+
+                if (err) {
+                    console.error(err.message);
+
+                    return res.status(500).json({
+                        error: "No fue posible registrar la salida."
+                    });
+                }
+
+                res.status(201).json({
+                    mensaje: "Salida registrada correctamente.",
+                    salida: {
+                        id: this.lastID,
+                        trabajador_id,
+                        fecha,
+                        hora
+                    }
+                });
+            }
+        );
+    });
+});
+
+// La linea 282 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
 app.use(express.static("../"));
 
 app.listen(PORT, () => {
