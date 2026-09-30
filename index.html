@@ -428,6 +428,130 @@
 
 </section>
 
+<!-- HU2 - REGISTRAR INGRESO -->
+<section id="registro-ingreso" class="registration-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Registrar ingreso</h2>
+            <p>
+                Registra el ingreso de un trabajador a la faena.
+            </p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="registration-card">
+
+                    <div
+                        id="mensajeIngreso"
+                        class="alert d-none"
+                        role="alert">
+                    </div>
+
+                    <form id="formIngreso">
+
+                        <div class="row g-3">
+
+                            <!-- Trabajador -->
+                            <div class="col-12">
+
+                                <label
+                                    for="trabajadorIngreso"
+                                    class="form-label">
+                                    Trabajador *
+                                </label>
+
+                                <select
+                                    id="trabajadorIngreso"
+                                    class="form-select"
+                                    required>
+
+                                    <option value="">
+                                        Seleccione un trabajador
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Ubicación -->
+                            <div class="col-12">
+
+                                <label
+                                    for="ubicacionIngreso"
+                                    class="form-label">
+                                    Ubicación *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="ubicacionIngreso"
+                                    class="form-control"
+                                    placeholder="Ej: Faena Norte - Sector A"
+                                    required>
+
+                            </div>
+
+                            <!-- Fecha y hora -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Fecha
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fechaIngreso"
+                                    class="form-control"
+                                    readonly>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Hora
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="horaIngreso"
+                                    class="form-control"
+                                    readonly>
+
+                            </div>
+
+                            <!-- Botón -->
+                            <div class="col-12 mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-dark">
+                                    Registrar ingreso
+                                </button>
+
+                                <button
+                                    type="reset"
+                                    class="btn btn-outline-secondary">
+                                    Limpiar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
     <!--FOOTER-->
     <footer class="footer-custom">
         <div class="container text-center">
