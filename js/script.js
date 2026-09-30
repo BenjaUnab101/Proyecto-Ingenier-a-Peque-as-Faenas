@@ -231,4 +231,157 @@ document.addEventListener("DOMContentLoaded", function () {
 
     mostrarTrabajadores();
 
+    // ============================
+    // HU2 - REGISTRAR INGRESO
+    // ============================
+
+    const formularioIngreso = document.getElementById("formIngreso");
+    const mensajeIngreso = document.getElementById("mensajeIngreso");
+    const trabajadorIngreso = document.getElementById("trabajadorIngreso");
+    const ubicacionIngreso = document.getElementById("ubicacionIngreso");
+    const fechaIngreso = document.getElementById("fechaIngreso");
+    const horaIngreso = document.getElementById("horaIngreso");
+
+    function mostrarMensajeIngreso(texto, tipo) {
+        mensajeIngreso.className = `alert alert-${tipo}`;
+        mensajeIngreso.textContent = texto;
+    }
+
+    async function cargarTrabajadoresIngreso() {
+        try {
+            const respuesta = await fetch("/trabajadores/ingreso");
+
+            if (!respuesta.ok) {
+                throw new Error("No fue posible obtener los trabajadores.");
+            }
+
+            const trabajadores = await respuesta.json();
+
+            trabajadorIngreso.innerHTML = `
+                <option value="">
+                    Seleccione un trabajador
+                </option>
+            `;
+
+            trabajadores.forEach(function (trabajador) {
+
+                const opcion = document.createElement("option");
+
+                opcion.value = trabajador.id;
+
+                opcion.textContent =
+                    `${trabajador.nombre} - ${trabajador.rut}`;
+
+                trabajadorIngreso.appendChild(opcion);
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Error al cargar trabajadores para ingreso:",
+                error
+            );
+
+            mostrarMensajeIngreso(
+                "No fue posible cargar los trabajadores.",
+                "danger"
+            );
+        }
+    }
+
+    function actualizarFechaHora() {
+
+        const ahora = new Date();
+
+        fechaIngreso.value = ahora.toLocaleDateString("es-CL");
+
+        horaIngreso.value = ahora.toLocaleTimeString("es-CL", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+    }
+
+    if (formularioIngreso) {
+
+        actualizarFechaHora();
+
+        cargarTrabajadoresIngreso();
+
+        formularioIngreso.addEventListener(
+            "submit",
+            async function (evento) {
+
+                evento.preventDefault();
+
+                const trabajador_id = trabajadorIngreso.value;
+                const ubicacion = ubicacionIngreso.value.trim();
+
+                if (!trabajador_id || !ubicacion) {
+
+                    mostrarMensajeIngreso(
+                        "Debe seleccionar un trabajador e ingresar la ubicación.",
+                        "danger"
+                    );
+
+                    return;
+                }
+
+                try {
+
+                    const respuesta = await fetch("/ingresos", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            trabajador_id: trabajador_id,
+                            ubicacion: ubicacion
+                        })
+
+                    });
+
+                    const resultado = await respuesta.json();
+
+                    if (!respuesta.ok) {
+
+                        mostrarMensajeIngreso(
+                            resultado.error ||
+                            "No fue posible registrar el ingreso.",
+                            "danger"
+                        );
+
+                        return;
+                    }
+
+                    mostrarMensajeIngreso(
+                        "Ingreso registrado correctamente.",
+                        "success"
+                    );
+
+                    actualizarFechaHora();
+
+                    formularioIngreso.reset();
+
+                    actualizarFechaHora();
+
+                } catch (error) {
+
+                    console.error(
+                        "Error al registrar ingreso:",
+                        error
+                    );
+
+                    mostrarMensajeIngreso(
+                        "No fue posible conectar con el servidor.",
+                        "danger"
+                    );
+                }
+            }
+        );
+    }
+
 });
