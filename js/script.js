@@ -366,6 +366,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     formularioIngreso.reset();
 
+                    cargarTrabajadoresPresentesHU4();
+
                     actualizarFechaHora();
 
                 } catch (error) {
@@ -504,6 +506,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cargarTrabajadoresPresentes();
 
+        cargarTrabajadoresPresentesHU4();
 
         formularioSalida.addEventListener(
             "submit",
@@ -602,6 +605,148 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
+    }
+
+    // ============================
+    // HU4 - CONSULTAR TRABAJADORES PRESENTES
+    // ============================
+
+    const tablaPresentes =
+        document.getElementById("tablaPresentes");
+
+    const sinPresentes =
+        document.getElementById("sinPresentes");
+
+    const mensajePresentes =
+        document.getElementById("mensajePresentes");
+
+    const actualizarPresentes =
+        document.getElementById("actualizarPresentes");
+
+
+    // Mostrar mensaje de HU4
+    function mostrarMensajePresentes(texto, tipo) {
+
+        mensajePresentes.className =
+            `alert alert-${tipo}`;
+
+        mensajePresentes.textContent =
+            texto;
+    }
+
+
+    // Cargar trabajadores presentes
+    async function cargarTrabajadoresPresentesHU4() {
+
+        try {
+
+            const respuesta =
+                await fetch("/trabajadores/presentes");
+
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "No fue posible obtener los trabajadores presentes."
+                );
+
+            }
+
+
+            const trabajadores =
+                await respuesta.json();
+
+
+            // Limpiar la tabla
+            tablaPresentes.innerHTML = "";
+
+
+            // CA1
+            if (trabajadores.length === 0) {
+
+                const fila =
+                    document.createElement("tr");
+
+                fila.innerHTML = `
+                    <td
+                        colspan="4"
+                        class="text-center">
+
+                        No hay trabajadores presentes
+                        actualmente.
+
+                    </td>
+                `;
+
+                tablaPresentes.appendChild(fila);
+
+                return;
+
+            }
+
+
+            // CA2
+            trabajadores.forEach(function (trabajador) {
+
+                const fila =
+                    document.createElement("tr");
+
+
+                fila.innerHTML = `
+                    <td>${trabajador.id}</td>
+
+                    <td>${trabajador.nombre}</td>
+
+                    <td>${trabajador.rut}</td>
+
+                    <td>${trabajador.cargo}</td>
+                `;
+
+
+                tablaPresentes.appendChild(fila);
+
+            });
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al cargar trabajadores presentes:",
+                error
+            );
+
+
+            mostrarMensajePresentes(
+                "No fue posible cargar los trabajadores presentes.",
+                "danger"
+            );
+
+        }
+
+    }
+
+
+    // CA3
+    // Actualizar la lista manualmente
+    if (actualizarPresentes) {
+
+        actualizarPresentes.addEventListener(
+            "click",
+            function () {
+
+                cargarTrabajadoresPresentesHU4();
+
+            }
+        );
+
+    }
+
+
+    // Cargar la lista al abrir la página
+    if (tablaPresentes) {
+
+        cargarTrabajadoresPresentesHU4();
 
     }
 
