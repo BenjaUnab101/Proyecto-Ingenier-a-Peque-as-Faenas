@@ -158,19 +158,17 @@ app.get("/trabajadores/presentes", (req, res) => {
         FROM trabajadores t
         INNER JOIN ingresos i
             ON t.id = i.trabajador_id
-        LEFT JOIN salidas s
-            ON t.id = s.trabajador_id
-            AND i.id = (
-                SELECT MAX(i2.id)
-                FROM ingresos i2
-                WHERE i2.trabajador_id = t.id
-            )
         WHERE i.id = (
-            SELECT MAX(i3.id)
-            FROM ingresos i3
-            WHERE i3.trabajador_id = t.id
+            SELECT MAX(i2.id)
+            FROM ingresos i2
+            WHERE i2.trabajador_id = t.id
         )
-        AND s.id IS NULL
+        AND NOT EXISTS (
+            SELECT 1
+            FROM salidas s
+            WHERE s.trabajador_id = t.id
+            AND s.id > i.id
+        )
         ORDER BY t.nombre ASC
     `;
 
@@ -278,7 +276,7 @@ app.post("/salidas", (req, res) => {
     });
 });
 
-// La linea 282 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
+// La linea 280 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
 app.use(express.static("../"));
 
 app.listen(PORT, () => {
