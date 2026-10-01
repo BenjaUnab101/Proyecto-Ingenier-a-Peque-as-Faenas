@@ -1,4 +1,4 @@
-# Proyecto Ingenieria Sofware Pequeñas Faenas Mineras
+# Proyecto Ingenieria en Sofware 1 Pequeñas Faenas Mineras
 ## Descripcion
 La problemática comienza por que las faenas no cuentan con un sistema accesible que permita un control confiable y auditable del trabajo de los mineros al entrar o salir de las faenas, además de su ubicación precisa lo que compromete la capacidad de respuesta ante emergencias o el cumplimiento de las normas de seguridad minera.
 ## Integrantes del Proyecto

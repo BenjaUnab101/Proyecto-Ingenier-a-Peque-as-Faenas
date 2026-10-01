@@ -506,7 +506,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cargarTrabajadoresPresentes();
 
-        cargarTrabajadoresPresentesHU4();
 
         formularioSalida.addEventListener(
             "submit",
@@ -587,6 +586,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Actualizar lista de trabajadores presentes
                     cargarTrabajadoresPresentes();
+                    cargarTrabajadoresPresentesHU4();
 
 
                 } catch (error) {
