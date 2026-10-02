@@ -276,7 +276,59 @@ app.post("/salidas", (req, res) => {
     });
 });
 
-// La linea 280 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
+// ============================
+// HU5 - HISTORIAL DE MOVIMIENTOS
+// ============================
+
+app.get("/trabajadores/:id/historial", (req, res) => {
+
+    const trabajadorId = req.params.id;
+
+    const sql = `
+        SELECT
+            'Entrada' AS tipo,
+            fecha,
+            hora,
+            ubicacion
+        FROM ingresos
+        WHERE trabajador_id = ?
+
+        UNION ALL
+
+        SELECT
+            'Salida' AS tipo,
+            fecha,
+            hora,
+            NULL AS ubicacion
+        FROM salidas
+        WHERE trabajador_id = ?
+
+        ORDER BY fecha DESC, hora DESC
+    `;
+
+    db.all(
+        sql,
+        [trabajadorId, trabajadorId],
+        (err, rows) => {
+
+            if (err) {
+
+                console.error(err.message);
+
+                return res.status(500).json({
+                    error: "No fue posible obtener el historial del trabajador."
+                });
+
+            }
+
+            res.json(rows);
+
+        }
+    );
+
+});
+
+// La linea 332 hace que Express sirva al propio frontend y no usemos POSTMAN para probar la API.
 app.use(express.static("../"));
 
 app.listen(PORT, () => {
