@@ -766,6 +766,107 @@
 
 </section>
 
+<!-- HU5 - HISTORIAL DE MOVIMIENTOS -->
+<section id="historial-movimientos" class="registration-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>Historial de movimientos</h2>
+
+            <p>
+                Consulta los ingresos y salidas registrados
+                de un trabajador.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="registration-card">
+
+                    <!-- Mensaje -->
+                    <div
+                        id="mensajeHistorial"
+                        class="alert d-none"
+                        role="alert">
+                    </div>
+
+                    <!-- Selección de trabajador -->
+                    <div class="mb-4">
+
+                        <label
+                            for="trabajadorHistorial"
+                            class="form-label">
+
+                            Trabajador *
+
+                        </label>
+
+                        <select
+                            id="trabajadorHistorial"
+                            class="form-select">
+
+                            <option value="">
+                                Seleccione un trabajador
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Tabla del historial -->
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-hover">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Tipo</th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Ubicación</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tablaHistorial">
+
+                                <tr>
+
+                                    <td
+                                        colspan="4"
+                                        class="text-center">
+
+                                        Seleccione un trabajador
+                                        para consultar su historial.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
     <!--FOOTER-->
     <footer class="footer-custom">
         <div class="container text-center">

@@ -750,4 +750,145 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // ============================
+    // HU5 - HISTORIAL DE MOVIMIENTOS
+    // ============================
+
+const trabajadorHistorial = document.getElementById("trabajadorHistorial");
+const tablaHistorial = document.getElementById("tablaHistorial");
+const mensajeHistorial = document.getElementById("mensajeHistorial");
+
+
+// Cargar trabajadores en el selector
+async function cargarTrabajadoresHistorial() {
+
+    try {
+
+        const response = await fetch("/trabajadores");
+
+        if (!response.ok) {
+            throw new Error("No fue posible obtener los trabajadores.");
+        }
+
+        const trabajadores = await response.json();
+
+        trabajadorHistorial.innerHTML = `
+            <option value="">
+                Seleccione un trabajador
+            </option>
+        `;
+
+        trabajadores.forEach(trabajador => {
+
+            const option = document.createElement("option");
+
+            option.value = trabajador.id;
+
+            option.textContent =
+                `${trabajador.nombre} - ${trabajador.rut}`;
+
+            trabajadorHistorial.appendChild(option);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        mostrarMensajeHistorial(
+            "No fue posible cargar los trabajadores.",
+            "danger"
+        );
+
+    }
+
+}
+
+// Consultar historial cuando se selecciona un trabajador
+trabajadorHistorial.addEventListener("change", async () => {
+
+    const trabajadorId = trabajadorHistorial.value;
+
+    if (!trabajadorId) {
+
+        tablaHistorial.innerHTML = `
+            <tr>
+                <td colspan="4" class="text-center">
+                    Seleccione un trabajador para consultar su historial.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `/trabajadores/${trabajadorId}/historial`
+        );
+
+        if (!response.ok) {
+            throw new Error("No fue posible obtener el historial.");
+        }
+
+        const historial = await response.json();
+
+        tablaHistorial.innerHTML = "";
+
+        if (historial.length === 0) {
+
+            tablaHistorial.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center">
+                        No existen movimientos registrados.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        historial.forEach(movimiento => {
+
+            const fila = document.createElement("tr");
+
+            fila.innerHTML = `
+                <td>${movimiento.tipo}</td>
+                <td>${movimiento.fecha}</td>
+                <td>${movimiento.hora}</td>
+                <td>${movimiento.ubicacion || "-"}</td>
+            `;
+
+            tablaHistorial.appendChild(fila);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        mostrarMensajeHistorial(
+            "No fue posible cargar el historial.",
+            "danger"
+        );
+
+    }
+
+});
+
+// Mostrar mensajes de HU5
+function mostrarMensajeHistorial(texto, tipo) {
+
+    mensajeHistorial.textContent = texto;
+
+    mensajeHistorial.className = `alert alert-${tipo}`;
+
+}
+
+// Inicializar selector de trabajadores
+if (trabajadorHistorial) {
+    cargarTrabajadoresHistorial();
+}
+
 });
